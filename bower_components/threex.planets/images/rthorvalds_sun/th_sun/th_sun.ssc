@@ -1,0 +1,192 @@
+
+
+
+
+
+"Sun" "Sol"
+{
+Texture		"th_sun.*"
+Emissive	true
+Radius		709100 #celestia Sol : 695705.371
+Oblateness	0.009
+
+	EllipticalOrbit {
+		Period 1e10
+		SemiMajorAxis 1e-10
+		Eccentricity 0.00
+		Inclination 0.00
+		}
+
+	Atmosphere {		Height 1925410
+		Lower	[ 0.9 0.70 0 ]
+		Upper	[ 0.62 0.5 0 ]
+		Sky	[ 0.9 0.65 0 ] 
+		CloudHeight 600
+		CloudSpeed 1015
+		CloudMap "th_suncover.*"		}
+
+	# RotationPeriod : the actual rotation rate varies with
+	# latitude L as: ( 14.37 - 2.33 sin2 L - 1.56 sin4 L ) deg/day
+
+RotationPeriod		609.6 # 601.25h @0 deg or 609.6h @16 deg lat
+Obliquity		7.25
+EquatorAscendingNode	75.62
+InfoURL "http://www.thorvaldsen.net/celestia/"
+}
+
+
+
+
+
+Location "Sunspot" "Sol/Sun"
+{
+LongLat		[ 3.1 -1.1 500 ]
+Importance	50000
+Type		"XX"
+Size		1000
+}
+
+
+
+
+
+"_sunflare1" "Sol"
+{
+Mesh		"th_placeholder.3ds"
+Radius		250000
+Emissive	true
+Oblateness	0.5
+
+	EllipticalOrbit
+		{
+		Period		9E10
+		SemiMajorAxis	0.00383
+		Inclination	90
+		MeanAnomaly	90
+		}
+
+	Atmosphere {		Height		0
+		CloudHeight	10
+		CloudSpeed	1000
+		CloudMap	"th_sunflare1.png"		}
+
+RotationPeriod	0.009
+Obliquity	45
+}
+
+
+
+
+
+"_sunflare2" "Sol"
+{
+Mesh		"th_placeholder.3ds"
+Radius		280000
+Emissive	true
+Oblateness	0.4
+
+	EllipticalOrbit
+		{
+		Period		9E10
+		SemiMajorAxis	0.003599
+		Inclination	180
+		MeanAnomaly	90
+		}
+
+
+	Atmosphere {		Height		0
+		CloudHeight	100
+		CloudSpeed	1000
+		CloudMap	"th_sunflare2.png"		}
+
+RotationPeriod	0.0092
+Obliquity	25
+}
+
+
+
+
+
+"_sunflare3" "Sol"
+{
+Mesh		"th_placeholder.3ds"
+Radius		210000
+Emissive	true
+Oblateness	0.4
+
+	EllipticalOrbit
+		{
+		Period		9E10
+		SemiMajorAxis	0.0041
+		Inclination	0
+		AscendingNode	90
+		MeanAnomaly	45
+		}
+
+
+	Atmosphere {		Height		0
+		CloudHeight	100
+		CloudSpeed	0
+		CloudMap	"th_sunflare3.png"		}
+
+RotationPeriod	0.0075
+Obliquity	225
+}
+
+
+
+
+
+
+"_sunflare4" "Sol"
+{
+Mesh		"th_placeholder.3ds"
+Radius		180000
+Emissive	true
+Oblateness	0.7
+
+	EllipticalOrbit
+		{
+		Period		9E10
+		SemiMajorAxis	0.0045
+		Inclination	25
+		}
+
+	Atmosphere {		Height		0
+		CloudHeight	70
+		CloudSpeed	1000
+		CloudMap	"th_sunflare4.png"		}
+
+RotationPeriod	-0.0095
+Obliquity	90
+}
+
+
+
+
+
+
+"_sunflare5" "Sol"
+{
+Mesh		"th_placeholder.3ds"
+Radius		250000
+Emissive	true
+Oblateness	0.2
+
+	EllipticalOrbit
+		{
+		Period 9E10
+		SemiMajorAxis 0.0044
+		Inclination 90
+		MeanAnomaly 90
+		}
+
+	Atmosphere {		Height		0
+		CloudHeight	100
+		CloudSpeed	0 #111000
+		CloudMap	"th_sunflare5.png"		}
+
+RotationPeriod	0.007
+Obliquity	45
+}
+

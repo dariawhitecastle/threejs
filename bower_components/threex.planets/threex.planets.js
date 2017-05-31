@@ -2,13 +2,13 @@ var THREEx = THREEx || {}
 
 THREEx.Planets	= {}
 
-THREEx.Planets.baseURL	= '../three/bower_components/threex.planets/'
+THREEx.Planets.baseURL	= '/bower_components/threex.planets/'
 
 // from http://planetpixelemporium.com/
 
 THREEx.Planets.createSun	= function(){
-	var geometry	= new THREE.SphereGeometry(0.5, 32, 32)
-	var texture	= THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/sunmap.jpg')
+	var geometry	= new THREE.SphereGeometry(500, 50, 50)
+	var texture	= THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/th_sun.png')
 	var material	= new THREE.MeshPhongMaterial({
 		map	: texture,
 		bumpMap	: texture,
@@ -222,7 +222,7 @@ THREEx.Planets.createSaturnRing	= function(){
 
 
 THREEx.Planets.createUranus	= function(){
-	var geometry	= new THREE.SphereGeometry(0.5, 32, 32)
+	var geometry	= new THREE.SphereGeometry(30, 32, 32)
 	var texture	= THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/uranusmap.jpg')
 	var material	= new THREE.MeshPhongMaterial({
 		map	: texture,

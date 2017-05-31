@@ -1,0 +1,8 @@
+
+VirtualTexture
+	{
+	ImageDirectory "th_sun" 
+	BaseSplit 0
+	TileSize 256
+	TileType "png"
+	}
