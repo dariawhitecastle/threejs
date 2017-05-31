@@ -1,9 +1,28 @@
-var container
-var camera, scene
-var group, clouds, sun
-var mouseX = 0, mouseY = 0
+let container
+let camera, scene
+let solarSys = {
+	sun: {},
+	mercury: {},
+	venus: {},
+	earth: {},
+	clouds: {},
+	moon: {},
+	mars: {},
+	jupiter: {},
+	saturn: {},
+	saturnRings: {},
+	uranus: {},
+	uranusRings: {},
+	neptune: {},
+	pluto: {},
+	starfield: {}
+}
 
-var renderer = new THREE.WebGLRenderer({canvas: document.getElementById('mainCanvas'), antialias: true})
+let onRenderFcts = []
+let group
+let mouseX = 0, mouseY = 0
+
+let renderer = new THREE.WebGLRenderer({canvas: document.getElementById('mainCanvas'), antialias: true})
 renderer.setSize( window.innerWidth, window.innerHeight )
 document.body.appendChild(renderer.domElement)
 const windowW = window.innerWidth
@@ -15,7 +34,7 @@ animate()
 function init() {
 	container = document.getElementById( 'mainCanvas' )
 	camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 100000 )
-	camera.position.set( 0, 200, 7000 )
+	camera.position.set( 0, 0, 7000 )
 	scene = new THREE.Scene()
 
 	group = new THREE.Group()
@@ -62,92 +81,93 @@ function init() {
   })
 
 	// sun
-	sun = THREEx.Planets.createSun()
+	solarSys.sun = THREEx.Planets.createSun()
 
 	// planets and positions
 
 	//MERCURY
 	let mercuryPivot = new THREE.Object3D()
-	sun.add(mercuryPivot)
-	let mercury = THREEx.Planets.createMercury()
-	mercury.position.x = 1200
-	mercuryPivot.add(mercury)
+	solarSys.sun.add(mercuryPivot)
+  solarSys.mercury = THREEx.Planets.createMercury()
+	solarSys.mercury.position.x = 1200
+	mercuryPivot.add(solarSys.mercury)
 	//VENUS
 	let venusPivot = new THREE.Object3D()
-	sun.add(venusPivot)
-	let venus = THREEx.Planets.createVenus()
-	venus.position.x = 1450
-	venusPivot.add(venus)
+	solarSys.sun.add(venusPivot)
+	solarSys.venus = THREEx.Planets.createVenus()
+	venusPivot.position.x = 1450
+	venusPivot.add(solarSys.venus)
+	// venusPivot.add(camera)
 	//EARTH
 	let earthPivot = new THREE.Object3D()
-	sun.add(earthPivot)
-  let earth = new THREE.Mesh(geometry, material)
-	earth.position.x = 1750
-	earthPivot.add(earth)
+	solarSys.sun.add(earthPivot)
+  solarSys.earth = new THREE.Mesh(geometry, material)
+	solarSys.earth.position.x = 1750
+	earthPivot.add(solarSys.earth)
 
 	let cloudsPivot = new THREE.Object3D()
-	sun.add(cloudsPivot)
-  clouds = new THREE.Mesh(geometry1, material1)
-	clouds.position.x = 1750
-	cloudsPivot.add(clouds)
+	solarSys.sun.add(cloudsPivot)
+  solarSys.clouds = new THREE.Mesh(geometry1, material1)
+	solarSys.clouds.position.x = 1750
+	cloudsPivot.add(solarSys.clouds)
 	// earthPivot.rotation.y += 0.1
 	//MARS
 	let marsPivot = new THREE.Object3D()
-	sun.add(marsPivot)
-	let mars = THREEx.Planets.createMars()
-	mars.position.x = 1900
-	marsPivot.add(mars)
+	solarSys.sun.add(marsPivot)
+	solarSys.mars = THREEx.Planets.createMars()
+	solarSys.mars.position.x = 1900
+	marsPivot.add(solarSys.mars)
 	//JUPITER
 	let jupiterPivot = new THREE.Object3D()
-	sun.add(jupiterPivot)
-	let jupiter = THREEx.Planets.createJupiter()
-	jupiter.position.x = 2400
-	jupiterPivot.add(jupiter)
+	solarSys.sun.add(jupiterPivot)
+	solarSys.jupiter = THREEx.Planets.createJupiter()
+	solarSys.jupiter.position.x = 2400
+	jupiterPivot.add(solarSys.jupiter)
 	// Saturn and rings
 	let saturnPivot = new THREE.Object3D()
-	sun.add(saturnPivot)
-	let saturn = THREEx.Planets.createSaturn()
+	solarSys.sun.add(saturnPivot)
+	solarSys.saturn = THREEx.Planets.createSaturn()
 	saturnPivot.position.x = 3500
-	saturnPivot.add(saturn)
+	saturnPivot.add(solarSys.saturn)
 
 	let saturnRingsPivot = new THREE.Object3D()
 	saturnPivot.add(saturnRingsPivot)
-	let saturnRings = THREEx.Planets.createSaturnRing()
-	saturnRingsPivot.add(saturnRings)
+	solarSys.saturnRings = THREEx.Planets.createSaturnRing()
+	saturnRingsPivot.add(solarSys.saturnRings)
 
-	// add sun and all the planets rotating around it to the group
+	// add solarSys.sun and all the planets rotating around it to the group
 
 	// Uranus
 	let uranusPivot = new THREE.Object3D()
-	sun.add(uranusPivot)
-	let uranus = THREEx.Planets.createUranus()
+	solarSys.sun.add(uranusPivot)
+	solarSys.uranus = THREEx.Planets.createUranus()
 	uranusPivot.position.x = 4200
-	uranusPivot.add(uranus)
+	uranusPivot.add(solarSys.uranus)
 
 	let uranusRingsPivot = new THREE.Object3D()
 	uranusPivot.add(uranusRingsPivot)
-	let uranusRings = THREEx.Planets.createUranusRing()
-	uranusRingsPivot.add(uranusRings)
+	solarSys.uranusRings = THREEx.Planets.createUranusRing()
+	uranusRingsPivot.add(solarSys.uranusRings)
 
 	// Neptune
 	let neptunePivot = new THREE.Object3D()
-	sun.add(neptunePivot)
-	let neptune = THREEx.Planets.createNeptune()
-	neptune.position.x = 4800
-	neptunePivot.add(neptune)
+	solarSys.sun.add(neptunePivot)
+	solarSys.neptune = THREEx.Planets.createNeptune()
+	solarSys.neptune.position.x = 4800
+	neptunePivot.add(solarSys.neptune)
 
 	// Pluto
 	let plutoPivot = new THREE.Object3D()
-	sun.add(plutoPivot)
-	let pluto = THREEx.Planets.createPluto()
-	pluto.position.x = 5000
-	plutoPivot.add(pluto)
+	solarSys.sun.add(plutoPivot)
+	solarSys.pluto = THREEx.Planets.createPluto()
+	solarSys.pluto.position.x = 5000
+	plutoPivot.add(solarSys.pluto)
 
 	//Starfield
-	let starfield = THREEx.Planets.createStarfield()
+	solarSys.starfield = THREEx.Planets.createStarfield()
 
- scene.add(starfield)
- group.add(sun)
+ scene.add(solarSys.starfield)
+ group.add(solarSys.sun)
 
 }
 
@@ -156,11 +176,28 @@ function animate() {
 	render()
 }
 
+let solarSysControls =  new THREE.OrbitControls(camera, renderer.domElement)
+
 function render() {
-	camera.position.x += ( mouseX - camera.position.x ) * 0.05
-	camera.position.y += ( - mouseY - camera.position.y ) * 0.05
-	camera.lookAt( scene.position )
-	sun.rotation.y -= 0.003
-	// clouds.rotation.y -= 0.0009
+
+	camera.lookAt( group.position )
+	solarSys.sun.rotation.y -= 0.003
+	solarSys.starfield.rotation.y -= 0.0004
+	solarSys.mercury.rotation.y -= 0.005
+	solarSys.venus.rotation.y -= 0.005
+	solarSys.earth.rotation.y -= 0.005
+	solarSys.clouds.rotation.y -= 0.005
+	solarSys.mars.rotation.y -= 0.005
+	solarSys.jupiter.rotation.y -= 0.005
+	solarSys.saturn.rotation.y -= 0.005
+	solarSys.uranus.rotation.y -= 0.05
+	solarSys.neptune.rotation.y -=0.01
+	solarSys.pluto.rotation.y -=0.01
+
+	document.addEventListener('click', function() {
+		console.log(this);
+	})
+
 	renderer.render( scene, camera )
+
 }
