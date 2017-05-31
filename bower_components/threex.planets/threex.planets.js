@@ -12,7 +12,7 @@ THREEx.Planets.createSun	= function(){
 	var material	= new THREE.MeshPhongMaterial({
 		map	: texture,
 		bumpMap	: texture,
-		bumpScale: 0.05,
+		bumpScale: 10,
 	})
 	var mesh	= new THREE.Mesh(geometry, material)
 	return mesh
@@ -23,7 +23,7 @@ THREEx.Planets.createMercury	= function(){
 	var material	= new THREE.MeshPhongMaterial({
 		map	: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/mercurymap.jpg'),
 		bumpMap	: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/mercurybump.jpg'),
-		bumpScale: 0.005,
+		bumpScale: 0.5,
 	})
 	var mesh	= new THREE.Mesh(geometry, material)
 	return mesh
@@ -34,7 +34,7 @@ THREEx.Planets.createVenus	= function(){
 	var material	= new THREE.MeshPhongMaterial({
 		map	: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/venusmap.jpg'),
 		bumpMap	: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/venusbump.jpg'),
-		bumpScale: 0.005,
+		bumpScale: 0.5,
 	})
 	var mesh	= new THREE.Mesh(geometry, material)
 	return mesh
@@ -117,7 +117,7 @@ THREEx.Planets.createMoon	= function(){
 	var material	= new THREE.MeshPhongMaterial({
 		map	: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/moonmap1k.jpg'),
 		bumpMap	: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/moonbump1k.jpg'),
-		bumpScale: 0.002,
+		bumpScale: 0.5,
 	})
 	var mesh	= new THREE.Mesh(geometry, material)
 	return mesh
@@ -128,7 +128,7 @@ THREEx.Planets.createMars	= function(){
 	var material	= new THREE.MeshPhongMaterial({
 		map	: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/marsmap1k.jpg'),
 		bumpMap	: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/marsbump1k.jpg'),
-		bumpScale: 0.05,
+		bumpScale: 0.5,
 	})
 	var mesh	= new THREE.Mesh(geometry, material)
 	return mesh
@@ -136,11 +136,11 @@ THREEx.Planets.createMars	= function(){
 
 THREEx.Planets.createJupiter	= function(){
 	var geometry	= new THREE.SphereGeometry(300, 32, 32)
-	var texture	= THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/jupitermap.jpg')
+	var texture	= THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/jupiter2_2k.jpg')
 	var material	= new THREE.MeshPhongMaterial({
 		map	: texture,
 		bumpMap	: texture,
-		bumpScale: 0.02,
+		bumpScale: 0.5,
 	})
 	var mesh	= new THREE.Mesh(geometry, material)
 	return mesh
@@ -153,7 +153,7 @@ THREEx.Planets.createSaturn	= function(){
 	var material	= new THREE.MeshPhongMaterial({
 		map	: texture,
 		bumpMap	: texture,
-		bumpScale: 0.05,
+		bumpScale: 0.5,
 	})
 	var mesh	= new THREE.Mesh(geometry, material)
 	return mesh
@@ -207,7 +207,7 @@ THREEx.Planets.createSaturnRing	= function(){
 	}, false);
 	imageMap.src	= THREEx.Planets.baseURL+'images/saturnringcolor.jpg';
 
-	var geometry	= new THREEx.Planets._RingGeometry(0.55, 0.75, 64);
+	var geometry	= new THREEx.Planets._RingGeometry(500, 5, 64);
 	var material	= new THREE.MeshPhongMaterial({
 		map		: new THREE.Texture(canvasResult),
 		// map		: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/ash_uvgrid01.jpg'),
@@ -216,7 +216,7 @@ THREEx.Planets.createSaturnRing	= function(){
 		opacity		: 0.8,
 	})
 	var mesh	= new THREE.Mesh(geometry, material)
-	mesh.lookAt(new THREE.Vector3(0.5,-4,1))
+	mesh.lookAt(new THREE.Vector3(-70,40,3))
 	return mesh
 }
 
@@ -227,7 +227,7 @@ THREEx.Planets.createUranus	= function(){
 	var material	= new THREE.MeshPhongMaterial({
 		map	: texture,
 		bumpMap	: texture,
-		bumpScale: 0.05,
+		bumpScale: 0.5,
 	})
 	var mesh	= new THREE.Mesh(geometry, material)
 	return mesh
@@ -280,7 +280,7 @@ THREEx.Planets.createUranusRing	= function(){
 	}, false);
 	imageMap.src	= THREEx.Planets.baseURL+'images/uranusringcolour.jpg';
 
-	var geometry	= new THREEx.Planets._RingGeometry(0.55, 0.75, 64);
+	var geometry	= new THREEx.Planets._RingGeometry(170, 10, 64);
 	var material	= new THREE.MeshPhongMaterial({
 		map		: new THREE.Texture(canvasResult),
 		// map		: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/ash_uvgrid01.jpg'),
@@ -289,7 +289,7 @@ THREEx.Planets.createUranusRing	= function(){
 		opacity		: 0.8,
 	})
 	var mesh	= new THREE.Mesh(geometry, material)
-	mesh.lookAt(new THREE.Vector3(0.5,-4,1))
+	mesh.lookAt(new THREE.Vector3(-5,-20,3))
 	return mesh
 }
 
@@ -313,19 +313,19 @@ THREEx.Planets.createPluto	= function(){
 	var material	= new THREE.MeshPhongMaterial({
 		map	: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/plutomap1k.jpg'),
 		bumpMap	: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/plutobump1k.jpg'),
-		bumpScale: 0.005,
+		bumpScale: 0.05,
 	})
 	var mesh	= new THREE.Mesh(geometry, material)
 	return mesh
 }
 
 THREEx.Planets.createStarfield	= function(){
-	var texture	= THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/galaxy_starfield.png')
+	var texture	= THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/milky_way.jpg')
 	var material	= new THREE.MeshBasicMaterial({
 		map	: texture,
 		side	: THREE.BackSide
 	})
-	var geometry	= new THREE.SphereGeometry(100, 32, 32)
+	var geometry	= new THREE.SphereGeometry(8000, 32, 32)
 	var mesh	= new THREE.Mesh(geometry, material)
 	return mesh
 }
@@ -397,7 +397,7 @@ THREEx.Planets._RingGeometry = function ( innerRadius, outerRadius, thetaSegment
 		this.faceVertexUvs[0].push(uvs);
 	}
 
-	this.computeCentroids();
+	// this.computeCentroids();
 	this.computeFaceNormals();
 
 	this.boundingSphere = new THREE.Sphere( new THREE.Vector3(), outerRadius );

@@ -14,7 +14,7 @@ animate()
 
 function init() {
 	container = document.getElementById( 'mainCanvas' )
-	camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 10000 )
+	camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 100000 )
 	camera.position.set( 0, 200, 7000 )
 	scene = new THREE.Scene()
 
@@ -107,42 +107,46 @@ function init() {
 	let saturnPivot = new THREE.Object3D()
 	sun.add(saturnPivot)
 	let saturn = THREEx.Planets.createSaturn()
-	saturn.position.x = 3500
+	saturnPivot.position.x = 3500
 	saturnPivot.add(saturn)
 
-	// let saturnRingsPivot = new THREE.Object3D()
-	// sun.add(saturnRingsPivot)
-	// let saturnRings = THREEx.Planets.createSaturnRing()
-	// saturnRings.position.x = 1300
-	// saturnRingsPivot.add(saturnRings)
+	let saturnRingsPivot = new THREE.Object3D()
+	saturnPivot.add(saturnRingsPivot)
+	let saturnRings = THREEx.Planets.createSaturnRing()
+	saturnRingsPivot.add(saturnRings)
+
 	// add sun and all the planets rotating around it to the group
 
 	// Uranus
 	let uranusPivot = new THREE.Object3D()
 	sun.add(uranusPivot)
 	let uranus = THREEx.Planets.createUranus()
-	uranus.position.x = 4000
+	uranusPivot.position.x = 4200
 	uranusPivot.add(uranus)
+
+	let uranusRingsPivot = new THREE.Object3D()
+	uranusPivot.add(uranusRingsPivot)
+	let uranusRings = THREEx.Planets.createUranusRing()
+	uranusRingsPivot.add(uranusRings)
 
 	// Neptune
 	let neptunePivot = new THREE.Object3D()
 	sun.add(neptunePivot)
 	let neptune = THREEx.Planets.createNeptune()
-	neptune.position.x = 4300
+	neptune.position.x = 4800
 	neptunePivot.add(neptune)
 
 	// Pluto
 	let plutoPivot = new THREE.Object3D()
 	sun.add(plutoPivot)
 	let pluto = THREEx.Planets.createPluto()
-	pluto.position.x = 4500
+	pluto.position.x = 5000
 	plutoPivot.add(pluto)
 
 	//Starfield
-
 	let starfield = THREEx.Planets.createStarfield()
-	starfield.position.x = 0
- group.add(starfield)
+
+ scene.add(starfield)
  group.add(sun)
 
 }
