@@ -14,18 +14,32 @@ animate()
 
 function init() {
 	container = document.getElementById( 'mainCanvas' )
-	camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 6000 )
-	camera.position.z = 2000
+	camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 10000 )
+	camera.position.set( 0, 200, 7000 )
 	scene = new THREE.Scene()
-	// sun = new THREE.Group()
-	// scene.add(sun)
+
 	group = new THREE.Group()
 	scene.add(group)
-  const light = new THREE.AmbientLight(0xffffff, .5)
-  scene.add(light)
-  const light1 = new THREE.PointLight(0xffffff, 2, 2000)
-  light1.position.set( 500, 500, 500 )
+  const light1 = new THREE.AmbientLight(0xffffff, .7)
   scene.add(light1)
+
+	let light	= new THREE.DirectionalLight(0xffffff, .8)
+	light.position.set(5,5,5)
+	scene.add( light )
+	light.castShadow	= true
+	light.shadowCameraNear	= 0.01
+	light.shadowCameraFar	= 15
+	light.shadowCameraFov	= 45
+	light.shadowCameraLeft	= -1
+	light.shadowCameraRight	=  1
+	light.shadowCameraTop	=  1
+	light.shadowCameraBottom= -1
+	// light.shadowCameraVisible	= true
+	light.shadowBias	= 0.001
+	light.shadowDarkness	= 0.2
+	light.shadowMapWidth	= 1024
+	light.shadowMapHeight	= 1024
+
 
 	let textureLoader = new THREE.TextureLoader()
 
@@ -52,22 +66,85 @@ function init() {
 
 	// planets and positions
 
+	//MERCURY
+	let mercuryPivot = new THREE.Object3D()
+	sun.add(mercuryPivot)
+	let mercury = THREEx.Planets.createMercury()
+	mercury.position.x = 1200
+	mercuryPivot.add(mercury)
+	//VENUS
+	let venusPivot = new THREE.Object3D()
+	sun.add(venusPivot)
+	let venus = THREEx.Planets.createVenus()
+	venus.position.x = 1450
+	venusPivot.add(venus)
+	//EARTH
 	let earthPivot = new THREE.Object3D()
-	sun.add( earthPivot )
+	sun.add(earthPivot)
   let earth = new THREE.Mesh(geometry, material)
-	earth.position.x = 2000
-	earthPivot.add( earth )
+	earth.position.x = 1750
+	earthPivot.add(earth)
 
 	let cloudsPivot = new THREE.Object3D()
 	sun.add(cloudsPivot)
   clouds = new THREE.Mesh(geometry1, material1)
-	clouds.position.x = 2000
+	clouds.position.x = 1750
 	cloudsPivot.add(clouds)
 	// earthPivot.rotation.y += 0.1
+	//MARS
+	let marsPivot = new THREE.Object3D()
+	sun.add(marsPivot)
+	let mars = THREEx.Planets.createMars()
+	mars.position.x = 1900
+	marsPivot.add(mars)
+	//JUPITER
+	let jupiterPivot = new THREE.Object3D()
+	sun.add(jupiterPivot)
+	let jupiter = THREEx.Planets.createJupiter()
+	jupiter.position.x = 2400
+	jupiterPivot.add(jupiter)
+	// Saturn and rings
+	let saturnPivot = new THREE.Object3D()
+	sun.add(saturnPivot)
+	let saturn = THREEx.Planets.createSaturn()
+	saturn.position.x = 3500
+	saturnPivot.add(saturn)
 
-	// create sun group and add planets to it
-  // sun.add(earth)
+	// let saturnRingsPivot = new THREE.Object3D()
+	// sun.add(saturnRingsPivot)
+	// let saturnRings = THREEx.Planets.createSaturnRing()
+	// saturnRings.position.x = 1300
+	// saturnRingsPivot.add(saturnRings)
+	// add sun and all the planets rotating around it to the group
+
+	// Uranus
+	let uranusPivot = new THREE.Object3D()
+	sun.add(uranusPivot)
+	let uranus = THREEx.Planets.createUranus()
+	uranus.position.x = 4000
+	uranusPivot.add(uranus)
+
+	// Neptune
+	let neptunePivot = new THREE.Object3D()
+	sun.add(neptunePivot)
+	let neptune = THREEx.Planets.createNeptune()
+	neptune.position.x = 4300
+	neptunePivot.add(neptune)
+
+	// Pluto
+	let plutoPivot = new THREE.Object3D()
+	sun.add(plutoPivot)
+	let pluto = THREEx.Planets.createPluto()
+	pluto.position.x = 4500
+	plutoPivot.add(pluto)
+
+	//Starfield
+
+	let starfield = THREEx.Planets.createStarfield()
+	starfield.position.x = 0
+ group.add(starfield)
  group.add(sun)
+
 }
 
 function animate() {
