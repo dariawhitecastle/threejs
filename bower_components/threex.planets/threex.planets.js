@@ -113,7 +113,7 @@ THREEx.Planets.createEarthCloud	= function(){
 
 
 THREEx.Planets.createMoon	= function(){
-	var geometry	= new THREE.SphereGeometry(0.5, 32, 32)
+	var geometry	= new THREE.SphereGeometry(7, 32, 32)
 	var material	= new THREE.MeshPhongMaterial({
 		map	: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/moonmap1k.jpg'),
 		bumpMap	: THREE.ImageUtils.loadTexture(THREEx.Planets.baseURL+'images/moonbump1k.jpg'),
